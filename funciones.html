@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Funciones JavaScript</h1>
+</body>
+<script>
+    //Funciones declaradas
+    function estoEsUnaFuncion(){
+        console.log("uno");
+        return 19;
+        console.log("dos");
+        console.log("tres");
+    }
+
+    function devuelveValor(){
+        estoEsUnaFuncion();
+        return "la función a retornado una cadena de texto"
+    }
+    let valorDeFuncion = devuelveValor();
+    console.log(valorDeFuncion)
+    
+    console.log("*******funciones con parametros*******");
+    function saludar1(nombre="desconocido",edad="*"){
+        console.log(`Hola mi nombre es ${nombre} y tengo ${edad} años`);
+    }
+    saludar1("Jorge",26);
+    saludar1();
+    
+    //array
+    let array_a = [4,5.6,"d",[3,"d"]];
+    console.log(array_a)
+    
+    //objetos
+    const Ale = {
+        nombre: "Alejandro",
+        apellido: "Quehui",
+        edad: 26,
+        pasatiempos: ["dormir","jugar","comer"],
+        soltero: true,
+        contacto:{
+            email: "alejandroqm832@gmail.com",
+            facebook: "Jorge Quehui",
+            numero: "62562395"
+        },
+        saludar: function(){
+            console.log(`Hola :) ${this.nombre}`);
+        }, 
+        decirMiNombre: function(){
+            console.log(`Hola me llamo ${this.nombre} ${this.apellido} tengo ${this.edad} años y me puedes seguir en facebook como ${this.contacto.facebook}.`)
+        }
+    };
+
+    console.log(Ale);
+    Ale.saludar();
+    Ale.decirMiNombre();
+    
+    console.log(Object.keys(Ale));
+    console.log(Object.values(Ale));
+    console.log(Ale.hasOwnProperty("nombre"));
+
+    //operadores
+    let num_1 = 5/8;
+    console.log(num_1);
+    /* 
+        = es asignacion de variable
+        == es comparacion de valores
+        === es comparacion de tipo de dato y de valor
+    */
+   console.log(8 === "8");
+   num_1 = 1;
+   num_1 = num_1 + 2;
+   //ó  (usable con +, -, *, /)
+   num_1 += 2;
+   console.log(num_1);
+   // operadores lógicos
+   /*
+        ! = Not
+        || = Or
+        && = And
+   */
+
+    //Condicionales
+    let edad = 74;
+    if(edad > 17){
+        console.log("mayor de edad");
+    }
+    else if(edad < 1){
+        console.log("no existes");
+    }
+    else{
+        console.log("menor de edad");
+    }
+    //operador ternario (condicional) ?parte verdadera :parte falsa
+    let eresMayor = (edad >= 18)? "Eresa mayor de edad": "Eres menor de edad"
+    console.log(eresMayor);
+    //operador switch
+    let dia = 9;
+    switch(dia){
+        case 0:
+            console.log("Lunes")
+            break;
+        case 1:
+            console.log("Martes");
+            break;
+        case 2:
+            console.log("Miercoles");
+            break;
+        case 3:
+            console.log("Jueves");
+            break;
+        case 4:
+            console.log("Viernes");
+            break;
+        case 5:
+            console.log("Fin de semana");
+            break;
+        default:
+            console.log("El día es gg");
+            break;
+    }
+
+    //bucles
+    let contador = 0;
+    while(contador < 10){
+        console.log(contador + 1);
+        contador += 1;
+    }
+    // do while
+    do{
+        console.log(contador);
+        contador -= 1;
+    }while(contador >= 1)
+    //bucle for
+    for(let i=1; i<11; i++){
+        console.log(i);
+    }
+    let numeros = [10,20,30,40,50,60,70,80,90];
+    for(i=0; i<numeros.length; i++){
+        console.log(numeros[i]);
+    }
+    //for para un objeto y sus propiedades, for in
+    const Jorge = {
+        nombre: "Alejandro",
+        apellido: "Quehui",
+        edad: 26
+    }
+    for(const propiedad in Jorge){
+        console.log(propiedad,Jorge[propiedad]);
+    }
+    //for of recorre cada elemento que sea iterable
+    for(const elemento of numeros){
+        console.log(elemento);
+    }
+
+    //Errores 
+    try{
+        let numero2 = "f";
+        if(isNaN(numero2)){
+            throw new Error("El caracater no es un número")
+        }
+        console.log(numero2*numero2)
+    }
+    catch(error){
+        console.log(`Se produjo el siguiente erro, ${error}`)
+    }
+
+    //continue(rompe la iteracion y continua) y break(rompe el ciclo)
+    for(i=0; i<numeros.length; i++){
+        if(i === 5){
+            continue;
+        }
+        console.log(numeros[i]);
+    }
+    
+    //destructuración
+    let persona = {
+        nombres: "Jorge",
+        apellidos: "Quehui",
+        edades: 26
+    };
+    //asignar mismo nombre a las nuevas variables no importa el orden
+    let {nombres, edades, apellidos} = persona;
+    console.log(nombres,apellidos, edades)
+
+    //parametros rest
+    function sumar(a, b, ...c){
+        let resultado = a + b ;
+        c.forEach(function(n){
+            resultado += n;
+        })
+        return resultado
+    }
+    console.log(sumar(1,2))
+    console.log(sumar(1,2,5))
+    console.log(sumar(1,2,5,87,4,5))
+    
+    //operador de propagación
+    const array1 = [1,2,3,4,5],
+        array2 = [6,7,8,9,0];
+    console.log(array1,array2);
+    const array3 = [...array1, ...array2];
+    console.log(array3);
+
+    //arrow funtion expresiva no declarada
+
+    const saludo = (nombre) => {
+        console.log(`Hola ${nombre}`);
+    }
+    saludo("Ale");
+
+    const suma = (a,b) => a + b;
+    console.log(suma(7,6));
+
+    const numeros_2 = [1,2,3,4,5,6,"sdfsd"];
+    numeros_2.forEach(function(valor,i){
+        console.log(`${valor}`)
+    })
+    //ó
+    numeros_2.forEach((valor,i) => console.log(`${valor}`))
+
+</script>
+</html>

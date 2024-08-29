@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <H1>Console, Math</H1>
+</body>
+<script>  
+    console.clear();
+    console.error("error!!");
+    console.warn("warn!!");
+    console.info("info!!");
+    let nombre = "Jorge",
+        apellido = "Quehui",
+        edad = 26;
+    console.log(`Hola mi nombre es %s %s y tengo %d años.`,nombre,apellido,edad);
+    //ver la estructura de la pagina
+    console.log(document);
+    //ver las caracteristicas de la pagina
+    console.dir(document);
+    console.log(console);
+    console.table(Object.entries(console).sort());
+
+    const numeros = [1,2,3,4,5],
+        vocales = ["a","e","i","o","u"];
+    console.table(numeros);
+    console.table(vocales);
+
+    //cronometro de tiempo
+    console.time('tiempo de ejecucion');
+    const arreglo = Array(10);
+    for(let i=0; i<arreglo.length; i++){
+        arreglo[i]=i;
+    }
+    console.timeEnd("tiempo de ejecucion");
+
+    //conteo de veces de ejecución
+    for(let i=0; i<=100; i++){
+        console.count("codigo for");
+        console.log(i);
+    }
+
+    //para poder hacer pruebas
+    let x = 1,
+        y = 2,
+        pruebaXY = "X siempre menor que Y";
+    console.assert(x<y, {x,y,pruebaXY});
+
+    //math
+    console.log(Math);
+    console.log(Math.abs(-7.8));//valor absoluto
+    console.log(Math.ceil(7.2));//redondeo al numero entero mayor
+    console.log(Math.floor(7.8));//redondeo al numero entero menor
+    console.log(Math.round(7.8));//redondeo al numero mas cercano
+    console.log(Math.sqrt(9));//raiz cuadrada
+    console.log(Math.pow(3, 2));//raiz cuadrada
+    console.log(Math.sign(-7.8));//indicador de numeros positivos 1 o negativos -1
+    console.log(Math.random()*100);//valor aleatorio entre 0-1 se puede (*)
+
+    //operadores cortocicuito
+    function saludar(nombre){
+        nombre = nombre || "Desconocido";
+        console.log(`Hola ${nombre}`);
+    }
+    saludar("Ale");
+    saludar();
+
+    //valores que tienden a true
+    //XOR valor de la izquierda verdadero para mostrar 
+    console.log("cadena" || "valor de la derecha");
+    console.log(20 || "valor de la derecha");
+    console.log(true || "valor de la derecha");
+    console.log(0 || "valor de la derecha");
+    console.log(false || "valor de la derecha");
+    //XAND valor de la izquierda falso para mostrar
+    console.log("cadena" && "valor de la derecha");
+    console.log(20 && "valor de la derecha");
+    console.log(true && "valor de la derecha");
+    console.log(0 && "valor de la derecha");
+    console.log(false && "valor de la derecha");
+
+    //alert 
+    /*
+    alert("Esto es una alerta");
+    confirm("Esto es una alerta");
+    prompt("Esto es una alerta");
+    */
+
+    let alerta = alert("Esto es una alerta");
+    let confirmacion = confirm("Esto es una alerta");
+    let anuncio = prompt("Esto es una alerta");
+    console.log(alerta);
+    console.log(confirmacion);
+    console.log(anuncio);
+
+</script>
+</html>

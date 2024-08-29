@@ -1,0 +1,11 @@
+{
+    "cadena": "jorge",
+    "numero": 26,
+    "booleano": true,
+    "arreglo": ["comer", "dormir"],
+    "objeto": {
+        "facebook": "@jaqm.com",
+        "email": "alejandroqm@gmail.com"
+    },
+    "nulo": "null"
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .inputOptional{
+            display: none;
+        }
+        .is-active{
+            display: block;
+        }
+    </style>
+    <select name="voice" id="voice">
+        <option value="1">----</option>
+        <option value="2">canino</option>
+        <option value="3">felino</option>
+        <option value="4">otra raza</option>
+    </select>
+    <input class="inputOptional" type="text" placeholder="Ingresar nombre de la raza">
+    <script>
+        const d = document;
+        const $selectVoice = d.getElementById("voice");
+        d.addEventListener("change", e => {
+        if(e.target === $selectVoice){
+            if(e.target.value === "4"){
+                d.querySelector(".inputOptional").classList.add("is-active");
+            }
+            else{
+                d.querySelector(".inputOptional").classList.remove("is-active");
+            }
+        }
+    });
+    </script>
+</body>
+</html>

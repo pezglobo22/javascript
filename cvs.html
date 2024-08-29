@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" id="file">
+    <div id="datos" hidden>
+        <table class="data-table">
+            <thead>
+                <th>Id</th>
+                <th>Numero de registro</th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <template id="crud-template"> 
+        <tr>
+            <td class="id"></td>
+            <td class="numero"></td>
+        </tr>
+    </template>
+</body>
+<script>
+    function verficarSM (valor){
+        let elmSm = /[SsMm-\s]/,
+            valorArray = valor.split(elmSm);
+        if(valorArray[valorArray.length-3] !== ""){
+            console.log("incorrecto");
+        }
+        else{
+            let idSm = valorArray[valorArray.length-2],
+            anioSm =valorArray[valorArray.length-1];
+            if (anioSm.length === 2 ){
+                if(anioSm > 22 && anioSm < 100){
+                    anioSm = Number("19"+ anioSm);
+                }
+                else{
+                    anioSm = Number("20"+ anioSm);
+                }
+            }
+            console.log(valorArray, idSm, anioSm);
+            return [idSm, anioSm]
+        }
+    }
+    function parseCSV(text) {
+    // Obtenemos las lineas del texto
+    let lines = text.replace(/\r/g, '').split('\n');
+    return lines.map(line => {
+        // Por cada linea obtenemos los valores
+        let values = line.split(';');
+        return values;
+    });
+    }
+
+    function reverseMatrix(matrix){
+    let output = [];
+    // Por cada fila
+    matrix.forEach((values, row) => {
+        // Vemos los valores y su posicion
+        values.forEach((value, col) => {
+        // Si la posición aún no fue creada
+        if (output[col] === undefined) output[col] = [];
+        output[col][row] = value;
+        });
+    });
+    return output;
+    }
+
+    function readFile(evt) {
+    let file = evt.target.files[0];
+    let reader = new FileReader();
+    reader.onload = (e) => {
+        // Cuando el archivo se terminó de cargar
+        let lines = parseCSV(e.target.result);
+        let output = reverseMatrix(lines);
+        console.log(output);
+        if(output.length == 2){
+            let template = document.getElementById("crud-template").content,
+                table = document.querySelector('.data-table'),
+                fragment = document.createDocumentFragment();
+                let aux = 0;
+                output[0].forEach(e => {
+                    if(aux == 0){
+                        aux = 1;
+                    }
+                    else{
+                        console.log(e);
+                        console.log(output[1][e])
+                        template.querySelector(".id").textContent = e;
+                        template.querySelector(".numero").textContent = output[1][e];
+                        let clone = document.importNode(template, true);
+                        fragment.appendChild(clone);
+                        aux++;
+                    }
+                })
+                aux = 0 ;
+            table.appendChild(fragment);
+            document.getElementById('datos').removeAttribute('hidden');
+        }
+        else{
+            alert("documento no valido")
+        }
+    };
+    // Leemos el contenido del archivo seleccionado
+    reader.readAsBinaryString(file);
+    }
+     
+    document.getElementById('file').addEventListener('change', readFile, false);
+</script>
+</html>

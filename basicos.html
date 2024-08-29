@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Variables JavaScript</h1>
+    
+    <script>
+        //variable local
+        var hola = "Hola Mundo";
+        //variable en bloque (separado por llaves)
+        let hello = "Hello World"
+        console.log(hola);
+        console.log(hello);
+        console.log(window.hello);
+        //Ambito de bloque
+        var musica = "Rock";
+        console.log("Variable Música antes del Bloque", musica);
+        //Esto es un bloque
+        {
+            var musica = "Pop";
+            console.log("Variable Música dentro del Bloque", musica);
+        }
+        console.log("Variable Música despues del Bloque", musica);
+        //Ambito de bloque con let
+        console.log("********let******");
+        let musica2 = "Rock";
+        console.log("Variable Música antes del Bloque", musica2);
+        //Esto es un bloque con let
+        {
+            let musica2 = "Pop";
+            console.log("Variable Música dentro del Bloque", musica2);
+        }
+        console.log("Variable Música despues del Bloque", musica2);
+        console.log("********let******");
+        /* uso del Const (variables que no cambian a lo largo de la aplicación)
+        para datos primitivos (string,number,boolean)
+        */
+        const PI = 3.14159265;
+        console.log(PI);
+        
+        let objeto = {
+            nombre: "alejandro",
+            edad: 35
+        }
+
+        let colores = [
+            "verde",
+            "amarillo",
+            "rojo"
+        ]
+
+        console.log(objeto);
+        console.log(colores);
+        console.log("******String*******");
+        //Cadenas de texto Strings
+
+        let nombre = "Jorge";
+        let apellido = 'Quehui';
+        let saludo = new String("Hola Mundo");
+        let ejemplo = "sdfs sdf gsfgsd sdfgsa gsd j"
+
+        console.log(nombre,apellido,saludo);
+        console.log(nombre.length)
+        console.log(
+            apellido.toUpperCase(),
+            saludo.toLocaleLowerCase(),
+            ejemplo.trim(),//espacios en blanco
+            ejemplo.split(" ")//separar 
+        );
+        console.log("*******concatenacion*******");
+        //concatenación
+        let nombre_1 = "Alejandro";
+        let apellido_1 = "Quehui";
+
+        let saludo_1 = "Hola mi nombre es "+ nombre_1 + " " + apellido_1;
+        console.log(saludo_1);
+        //interpolacion de variables template string
+        let saludo_2 = `Hola mi nombre es ${nombre_1} ${apellido_1}`
+        console.log(saludo_2);
+
+        let ul = `<ul>
+                    <li>Primavera</li>
+                    <li>Verano</li>
+                    <li>Otoño</li>
+                    <li>Invierno</li>
+                </ul>`
+
+        console.log(ul);
+        //numeros
+        console.log("*******numeros*******");
+        let a = 2;
+        let b = new Number(1);
+        let c = 7.19;
+        let d = "5.6";
+
+        console.log(a,b);
+        console.log(
+            c.toFixed(1),
+            c.toFixed(5),
+            parseInt(c),
+            parseFloat(c)
+        )
+        console.log(typeof c);
+        console.log(a + b);
+        console.log(c + parseInt(d));
+        console.log(c + parseFloat(d));
+        
+        //boolean
+        console.log("*******boolean*******");
+        let verdadero = true;
+        let falso = false;
+
+        console.log(typeof verdadero);
+        console.log(verdadero, falso);
+        console.log(Boolean(0));
+        console.log(Boolean(-1));
+        console.log(Boolean("fsdf"));
+    </script>
+</body>
+</html>

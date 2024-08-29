@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Nuevos tipos de datos en javaScript</h1>
+        <p>Lorem</p>
+        <p>Lorem</p>
+        <p>Lorem</p>
+</body>
+<script>
+    // simbolos crean una referencia unica
+    let id = Symbol("id");
+    let id2 = Symbol("id");
+    console.log(id===id2);
+    const NOMBRE = Symbol("nombre");
+    const SALUDAR = Symbol("nombre");
+    const persona = {
+        [NOMBRE]: "jorge",
+        edad: 26
+    };
+    console.log(persona);
+    persona.NOMBRE = "Alejandro"
+    console.log(persona);
+    console.log(persona.NOMBRE);
+    console.log(persona[NOMBRE]);
+    persona[SALUDAR] = function(){
+        console.log("Hola");
+    }
+    console.log(persona);
+    persona[SALUDAR]();
+    for(let propiedades in persona){
+        console.log(propiedades);
+        console.log(persona[propiedades])
+    }
+    console.log(Object.getOwnPropertySymbols(persona));
+
+    // arreglos o datos tipo SET
+    const set = new Set([1, 2, 3, 3, 4 , true, false, true, {}, {}, "hola", "HOLA"]);
+    console.log(set);
+    console.log(set.size);
+    const set2 = new Set();
+    set2.add(1);
+    set2.add(2);
+    set2.add(true);
+    set2.add(false);
+    set2.add(false);
+    set2.add({})
+    console.log(set2);
+    console.log(set2.size);
+    for(item of set){
+        console.log(item);
+    }
+    set2.forEach(item => console.log(item));
+    console.log(set[0]);
+    let arr = Array.from(set);
+    console.log(arr[0]);
+    set.delete("HOLA");
+    console.log(set);
+    console.log(set.has("hola"));
+
+    //tipo de datos map conjunto de valores asociados (objeto primitivo)
+    let mapa = new Map();
+    mapa.set("nombre", "jorge");
+    mapa.set("apellido", "quehui");
+    mapa.set("edad", 26);
+    console.log(mapa);
+    console.log(mapa.size);
+    console.log(mapa.has("nombre"));
+    console.log(mapa.get("nombre"));
+    mapa.set("nombre", "alejandro");
+    console.log(mapa.get("nombre"));
+    mapa.set(19, "diecinueve");
+    mapa.set(true, "true");
+    mapa.set({}, {});
+    for(let [key, value] of mapa){
+        console.log(`Llave: ${key}, Valor: ${value}`);
+    }
+    const llavesMapa = [...mapa.keys()];
+    const valoresMapa = [...mapa.values()];
+    console.log(llavesMapa);
+    console.log(valoresMapa);
+
+    //tipo de datos weakset y weakmap
+    const ws = new WeakSet();
+    let valor1 = {"valor": 1};
+    let valor2 = {"valor": 2};
+    let valor3 = {"valor": 3};
+    ws.add(valor1);
+    ws.add(valor2);
+    ws.add(valor3);
+    console.log(ws);
+    //setInterval(() => console.log(ws), 1000);
+    setTimeout(() => {
+        valor1 = null;
+        valor2 = null;
+        valor3 = null;
+    }, 5000);
+
+    const wm = new WeakMap();
+    let llave1 = {},
+        llave2 = {},
+        llave3 = {}
+    wm.set(llave1, 1);
+    wm.set(llave2, 2);
+    console.log(wm);
+
+    //iteradores e iterables
+    const iterable = new Set([1, 2, 3, 4, 5, 6, 1, 3]);
+    const iterador = iterable[Symbol.iterator]();
+    console.log(iterable);
+    console.log(iterador);
+    let next = iterador.next();
+    while(!next.done){
+        console.log(next.value);
+        next = iterador.next();
+    }
+
+    //generadores convertir en iterables
+    function* iterable1(){
+        yield "hola1";
+        console.log("hola mundo");
+        yield "hola2";
+        console.log("continua aquí");
+        yield "hola3";
+        yield "hola4";
+    }
+    let interador1 = iterable1();
+    for(let i of interador1){
+        console.log(i);
+    }
+    const arr1 = [...iterable1()];
+    console.log(arr1);
+
+    function cuadradro(valor5){
+        setTimeout(() => {
+ 
+        }, Math.random() * 1000);
+        return{
+            valor5,
+            resultado: valor5 * valor5
+        }
+    }
+    function* generador(){
+        console.log("inicia generator");
+        yield cuadradro(0);
+        yield cuadradro(1);
+        yield cuadradro(2);
+        yield cuadradro(3);
+        yield cuadradro(4);
+        yield cuadradro(5);
+        console.log("finaliza generator");
+    }
+    let interador2 = generador();
+    for(let i of interador2){
+        console.log(i);
+    }
+
+    //proxies 
+    const persona1 = {
+        nombre: "",
+        apellido: "",
+        edad: 0
+    }
+    //manejador valida lo que se puede hacer
+    const manejador1 = {
+        set(objeto1, propiedade1, values1){
+            if(Object.keys(objeto1).indexOf(propiedade1) === -1)
+                return console.error(`La propiedad ${propiedade1} no es de persona`);
+            objeto1[propiedade1] = values1;
+        }
+    }
+    const ale = new Proxy(persona1, manejador1);
+    ale.nombre = "ale";
+    ale.apellido = "quehui";
+    ale.edad = 26;
+    ale.twitter = "dfd@fd.com"
+    console.log(ale);
+
+    //propiedades dinamicas
+    let aleatorio = Math.round(Math.random() * 100 + 5);
+    const usuarios = {
+        propiedad: "Valor",
+        [`id_${aleatorio}`]: "valor aleatorio"
+    };
+    console.log(usuarios)
+
+    //this
+    this.nombre = "contexto global";
+    function imprimir(){
+        console.log(this.nombre);
+    }
+    imprimir();
+    const obj = {
+        nombre: "contexto objeto",
+        imprimir: function(){
+            console.log(this.nombre);
+        }
+    }   
+    obj.imprimir();
+    const obj2 = {
+        nombre: "contexto objeto 2",
+        imprimir
+    }
+    obj2.imprimir();
+    const obj3 = {
+        nombre: "contexto objeto 3",
+        imprimir: () =>{
+            console.log(this.nombre);
+        }
+    } 
+    obj3.imprimir();
+    function Persona(nombre){
+        this.nombre = nombre;
+        //return console.log(this.nombre);
+        //o para definir funcion dentro de funcion
+        return () => console.log(this.nombre)
+    }
+    let ale1 = new Persona("Ale");
+    ale1();
+
+    //call, apply and bind
+    this.lugar = "contexto global";
+    function saludar(aQuien) {
+        console.log(`${this.lugar}, de ${aQuien}`);
+    }
+    saludar();
+    const obj5 = {
+        lugar: "Contexto objeto"
+    }
+    saludar.call(obj5, "jorge call");
+    saludar.apply(obj5, ["jorge apply"]);
+    const persona2 = {
+        nombre: "jorge Quehui",
+        saludar: function(){
+            console.log(`Hola ${this.nombre}`);
+        }
+    }
+    persona2.saludar();
+    const otraPersona2 = {
+        saludar: persona2.saludar.bind(persona2)
+    }
+    otraPersona2.saludar();
+
+</script>
+</html>

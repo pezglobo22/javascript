@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="files/descarga.png"><!--para el icono-->
+    <link rel="apple-touch-ico" href="files/descarga.png"><!--para el icono en celulares-->
+    <link rel="stylesheet" href="assets/css/formulario-fetch-php.css"> 
+    <meta name="theme-color" content="#FF6600"><!--para celulares-->
+    <title>Envio de formulario con Fetch y php</title>
+</head>
+<body>
+    <h2>Validación de formulario PHP</h2><br>
+    <form class="contact-form">
+        <legend>Envíanos tus comentarios</legend>
+        <input type="text" name="name" placeholder="Escriba su nombre" title="Nombre solo acepta letras y espacios en blanco" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required>
+        <input type="email" name="email" placeholder="Escriba su correo" title="Email incorrecto" pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" required>
+        <input type="text" name="subject" placeholder="Asunto a tratar" title="El asunto es requerido" required>
+        <textarea name="comments" cols="50" rows="5" placeholder="Escriba sus comentarios" data-pattern="^.{1,255}$" title="Tu comentario no debe exeder los 255 caracateres" required></textarea>
+        <input type="submit" value="Enviar">
+        <div class="contact-form-loader none">
+            <img src="../assets/circles.svg" alt="Cargando">
+        </div>
+        <div class="contact-form-response none">
+            <p>Los datos han sido enviados</p>
+        </div>
+    </form>
+    <br>
+    <article>
+        <h2>Externo +</h2>
+        <a href="mailto:alejandroqm832@gmail.com">Enlace a correo electronico</a>
+        <br>
+        <a href="tel:59162562395">Enlace a teléfono</a>
+        <br>
+        <a href="https://api.whatsapp.com/send?phone=59162562395&text=Hola">Enlace a whatsapp</a>
+        <br>
+    </article>
+    <iframe src="files/cheatsheet-a5.pdf" frameborder="1"></iframe>
+    <script src="assets/js/formulario-fetch-php.js"></script>
+</body>
+</html>

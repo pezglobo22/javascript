@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>POO</h1>
+        <ul>
+            <li>Clases: Modelo a seguir</li>
+            <li>Objetos: Es una instancia de una clase</li>
+            <ul>
+                <li>Atributos: caracteristicas o propiedades del objeto</li>
+                <li>Métodos: Son las acciones que un objeto puede realizar</li>
+            </ul>
+        </ul>
+</body>
+<script>
+    const animal = {
+        nombre1: "Gabilan",
+        sonar1(){
+            console.log("Hago sonidos")
+        }
+    }
+    console.log(animal);
+    // Función constructora
+    function Animal(nombre, genero){
+        //atributos
+        this.nombre = nombre;
+        this.genero = genero;
+        //metodos (incorrecto)
+        /*this.sonar = function(){
+            console.log("Hago sonidos");
+        }*/
+    }
+    //sacar los metodos del contructor (correcto)
+    Animal.prototype.saludar = function(){
+        console.log(`Hola me llamo ${this.nombre}`);
+    }
+    Animal.prototype.sonar = function(){
+        console.log("Hago sonidos");
+    }
+    //herencia prototipica
+    function Perro(nombre, genero, tamanio){
+        this.super = Animal;
+        this.super(nombre, genero);
+        this.tamanio = tamanio;
+    }
+    //Perro esta heredando de animal
+    Perro.prototype = new Animal();
+    Perro.prototype.constructor = Perro;
+    //sobre escritura del metodo del padre al hijo, deben estar fuera del constructor
+    Perro.prototype.sonar = function(){
+        console.log("Soy un perro y mi sonido es ladrar");
+    }
+    Perro.prototype.ladrar = function(){
+        console.log("Guauu Guauu")
+    }
+
+    const snoopy = new Perro("snoopy", "macho", "Mediano");
+    console.log(snoopy);
+    snoopy.sonar();
+    snoopy.saludar();
+    snoopy.ladrar();
+</script>
+</html>

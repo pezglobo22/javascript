@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/formularios.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+        <h1>Ejercios del DOM Formulario</h1> 
+    </header>
+    <h2>Validación de formulario</h2><br>
+    <form target="_blank" class="contact-form" action="https://formsubmit.co/f4316221e0633d454e469963f85dfdc1" method="POST">
+        <legend>Envíanos tus comentarios</legend>
+        <input type="text" name="name" placeholder="Escriba su nombre" title="Nombre solo acepta letras y espacios en blanco" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required>
+        <input type="email" name="email" placeholder="Escriba su correo" title="Email incorrecto" pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" required>
+        <input type="text" name="subject" placeholder="Asunto a tratar" title="El asunto es requerido" required>
+        <textarea name="comments" cols="50" rows="5" placeholder="Escriba sus comentarios" data-pattern="^.{3,255}$" title="Tu comentario no debe exeder los 255 caracateres" required></textarea>
+        <input type="submit" value="Enviar">
+        <div class="contact-form-loader none">
+            <img src="assets/circles.svg" alt="Cargando">
+        </div>
+        <div class="contact-form-response none">
+            <p>Los datos han sido enviados</p>
+        </div>
+    </form>
+    <script src="js/formulario_dom.js" type="module"></script>
+</body>
+</html>

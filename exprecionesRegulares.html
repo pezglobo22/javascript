@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Expreciones regulares</h1>
+</body>
+<script>
+    let cadena = "hola hola halo helo hilo hulo";
+    let expReg = new RegExp("hola","ig");//declarar un exprecion regular (busqueda, banderas)
+    //ó
+    let expReg2 = /hola{1,3}/ig;// primero la palabra el numero de veces despues la bandera ejm \d buscar numero [0-9]
+    console.log("**********")
+    console.log(expReg2.test(cadena));
+    console.log(expReg2.exec(cadena));
+
+    //funciones anonimas auto ejecutables
+    (function(){
+        console.log("Mi primer IIFE");
+    })();
+
+    (function(d=null, w=null, c=null){    
+        console.log("Mi segunda IIFE");
+        console.log(d);
+        console.log(w);
+        c.log("este es un log");
+    })(document, window, console);
+
+</script>
+</html>
